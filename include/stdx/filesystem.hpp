@@ -27,7 +27,7 @@ using namespace std;
 namespace stdx
 {
     
-void getFiles(const string& in_folder, vector<string>& out_files)
+inline void getFiles(const string& in_folder, vector<string>& out_files)
 {
 #ifndef _WIN32
     DIR *dir;
@@ -53,7 +53,7 @@ void getFiles(const string& in_folder, vector<string>& out_files)
 #endif //_WIN32
 }
 
-bool createDirectory(const char* newdir)
+inline bool createDirectory(const char* newdir)
 {
 #if defined ( __APPLE__  ) || defined ( __linux__ ) 
     if( mkdir(newdir, 0755) == -1 )
@@ -69,7 +69,7 @@ bool createDirectory(const char* newdir)
     }
 }
     
-std::string basename(std::string str)
+inline std::string basename(std::string str)
 {
     // Remove directory if present.
     // Do this before extension removal incase directory has a period character.
@@ -87,13 +87,13 @@ std::string basename(std::string str)
     }
     return str;
 }
-std::string fileExt(const std::string& str)
+inline std::string fileExt(const std::string& str)
 {
     if(str.find_last_of(".") != std::string::npos)
         return str.substr(str.find_last_of(".")+1);
     return "";
 }
-bool fileExists(const std::string& str)
+inline bool fileExists(const std::string& str)
 {
     return std::filesystem::exists(str);
 }
